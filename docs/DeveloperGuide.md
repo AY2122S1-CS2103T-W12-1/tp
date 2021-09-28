@@ -283,16 +283,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
+(For all use cases below, the **System** is `SportsPA` and the **Actor** is the `user`, unless specified otherwise)
+      
+**Use case: UC07 - List members**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all members
+2.  SportsPA shows the list of all members to the user
+
+    Use case ends.
+
+**Use case: UC08 - Find members using keyword(s)**
+
+**MSS**
+
+1.  User enters a keyword or multiple keywords
+2.  SportsPA finds members whose names matches the keyword(s)
+3.  A list of members whose names matches at least one keyword will be displayed to the user
+ 
+    Use case ends
+
+**Extensions**
+
+* 1a. User does not provide any keyword.
+ 
+    * 1a1. SportsPA shows an error message
+    
+	     Use case resumes from step 1.
+     
+* 3a. No members have names matching the keyword(s).
+
+    * 3a1. SportsPA displays message to user that no members can be found
+    
+	     Use case ends.
+
+**Use case: UC09 - Delete a member**
+
+**MSS**
+
+1.  User requests to list members (UC07) or find members (UC08)
+2.  SportsPA shows the list of members
+3.  User requests to delete a specific member in the list
+4.  SportsPA deletes the member
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+	 Use case ends. 
+      
+* 3a. The given index is invalid.
+
+    * 3a1. SportsPA shows an error message
+    
+      Use case resumes at step 2.
+
+**Use case: UC10 - Set a member’s availability**
+
+**MSS**
+
+1.  User requests to list members (UC07) or find members (UC08)
+2.  SportsPA shows the list of members 
+3.  User requests to set availability of a specific member in the list
+4.  SportsPA updates the availability of the member
 
     Use case ends.
 
@@ -301,27 +357,93 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
   Use case ends.
-
+  
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SportsPA shows an error message
+    
+      Use case resumes at step 2.
+    
+* 3b. The given availability (ie. day) is invalid.
 
+    * 3b1. SportsPA shows an error message
+    
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC11 - Split members into facilities**
+
+**MSS**
+
+1.  User requests to split members into the facilities
+2.  SportsPA shows the list of allocations
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. SportsPA detects insufficient capacity to allocate all available members
+
+    * 1a1. SportsPA shows an error message.
+    
+      Use case ends.
+
+**Use case: UC12 - Clear all entries in facility list**
+
+**MSS**
+
+1.  User requests to clear all entries in facility list
+2.  SportsPA deletes all existing facilities in the facility list.
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. Facility list is empty.
+
+    * 1a1. SportsPA shows an error message
+    
+      Use case ends.
+
+**Use case: UC13 - Clearing all entries in member list**
+
+**MSS**
+
+1.  User requests to clear all entries in member list
+2.  SportsPA deletes all the existing members in the member list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Member list is empty
+
+    * 1a1. SportsPA shows an error message
+    
+      Use case ends.
+
+**Use case: UC14 - Exiting the program**
+
+**MSS**
+
+1.  User requests to exit the program
+2.  SportsPA terminates
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  Should work on any mainstream OS as long as it has Java 11 or above installed
+2.  Should be able to hold up to 1000 entries (members and facilities) without a noticeable sluggishness in performance for typical usage
+3.  Should be able to process and execute user commands within 3 seconds
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Graphical User Interface (GUI)**: A user interface that includes graphical representation like buttons and icons for users to interact with
+* **Command Line Interface (CLI)**: A text-based user interface that the user interacts with by typing in commands
+* **Group size regulations**: Maximum allowable group size for sporting activities as specified by Covid-19 regulations 
+* **Above average typing speed**: faster than 40wpm (words per minute)
 
 --------------------------------------------------------------------------------------------------------------------
 
