@@ -19,8 +19,10 @@ public class SplitCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSplitCommand() {
-        SplitCommand expectedSplitCommand = new SplitCommand("Mon");
+        SplitCommand expectedSplitCommand = new SplitCommand("MON");
         assertParseSuccess(parser, "Mon", expectedSplitCommand);
-        assertParseSuccess(parser, "\n  \t Mon  \t ", expectedSplitCommand);
+        assertParseSuccess(parser, "mon", expectedSplitCommand);
+        assertParseSuccess(parser, "mOn", expectedSplitCommand);
+        assertParseSuccess(parser, "\n  \t MON  \t ", expectedSplitCommand);
     }
 }

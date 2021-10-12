@@ -16,6 +16,6 @@ public class SplitCommandParser implements Parser<SplitCommand> {
                     SplitCommand.MESSAGE_USAGE));
         }
 
-        return new SplitCommand(trimmedArgs);
+        return new SplitCommand(trimmedArgs.toUpperCase());
     }
 }

@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,7 +13,6 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private List<String> days;
 
 
     // Data fields
@@ -59,9 +57,6 @@ public class Person {
         return availability.contains(day);
     }
 
-    public void setDays(List<String> days) {
-        this.days = days;
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.

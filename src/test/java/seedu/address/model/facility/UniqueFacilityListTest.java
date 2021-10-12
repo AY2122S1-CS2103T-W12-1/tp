@@ -55,10 +55,8 @@ public class UniqueFacilityListTest {
         uniqueFacilityList.add(TAMPINES_HUB_FIELD_SECTION_B);
 
         ObservableList<Person> members = FXCollections.observableArrayList();
-        Person firstMember = new PersonBuilder().build();
-        firstMember.setDays(Arrays.asList("Mon", "Tue"));
-        Person secondMember = new PersonBuilder().build();
-        secondMember.setDays(Arrays.asList("Mon", "Thu"));
+        Person firstMember = new PersonBuilder().withAvailability("Mon Tue").build();
+        Person secondMember = new PersonBuilder().withAvailability("Mon Thu").build();
         members.add(firstMember);
         members.add(secondMember);
 

@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    public static final Availability SAMPLE_AVAILABILITY = new Availability("Mon Wed Fri");
+    public static final Availability SAMPLE_AVAILABILITY = new Availability("MON WED FRI");
 
     public static Person[] getSamplePersons() {
         return new Person[] {

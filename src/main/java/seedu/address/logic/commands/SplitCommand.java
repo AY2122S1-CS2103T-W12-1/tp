@@ -17,12 +17,12 @@ public class SplitCommand extends Command {
     public static final String COMMAND_WORD = "split";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": splits members into locations based on availability.\n"
             + "Parameters: " + "DAY\n"
-            + "DAY must be one of Mon, Tue, Wed, Thu, Fri, Sat or Sun\n"
-            + "Example: " + COMMAND_WORD + " Mon";
+            + "DAY must be one of Mon, Tue, Wed, Thu, Fri, Sat or Sun (case-insensitive)\n"
+            + "Example: " + COMMAND_WORD + " mon";
     public static final String MESSAGE_SUCCESS = "Members have been split for %1$s";
 
-    private static final List<String> VALID_DAYS = Arrays.asList("Mon", "Tue", "Wed",
-            "Thu", "Fri", "Sat", "Sun");
+    private static final List<String> VALID_DAYS = Arrays.asList("MON", "TUE", "WED",
+            "THU", "FRI", "SAT", "SUN");
     private final String day;
 
     /**

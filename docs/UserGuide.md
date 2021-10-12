@@ -213,10 +213,10 @@ Splits members into facilities based on its capacity and members' availability.
 Format: `split DAY`
 
 * Allocate members available at the specified `DAY` to each facility
-* `DAY` **must be one of the following:** Mon, Tue, Wed, Thu, Fri, Sat, Sun
+* `DAY` **must be one of the following:** Mon, Tue, Wed, Thu, Fri, Sat, Sun (case-insensitive)
 
 Examples:
-* `split Mon` splits members into groups for training on Monday of that week and displays the list of allocations to the user
+* `split Mon` or `split MON` splits members into groups for training on Monday of that week and displays the list of allocations to the user
 
 ### Clearing all entries in facility list: `clearf`
 
@@ -271,4 +271,4 @@ Action | Format, Examples
 **List members**| `listm`
 **List facilities**| `listf`
 **Set member availability**| `setm INDEX/INDICES d/DAY(S)...` <br> eg.`setm 1 2 3 d/Tue Wed`
-**Split members**| `split d/DAY` <br> eg. `split d/Mon`
+**Split members**| `split DAY` <br> eg. `split Mon`

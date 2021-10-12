@@ -32,20 +32,19 @@ public class SplitCommandTest {
 
     @Test
     public void execute_validDay_success() {
-        SplitCommand command = new SplitCommand("Thu");
-        String expectedMessage = String.format(SplitCommand.MESSAGE_SUCCESS, "Thu");
-        Person person = new PersonBuilder().build();
-        person.setDays(Arrays.asList("Mon", "Tue", "Thu"));
+        SplitCommand command = new SplitCommand("THU");
+        String expectedMessage = String.format(SplitCommand.MESSAGE_SUCCESS, "THU");
+        Person person = new PersonBuilder().withAvailability("MON TUE THU").build();
         model.setPerson(ALICE, person);
         expectedModel.setPerson(ALICE, person);
-        PersonAvailableOnDayPredicate predicate = new PersonAvailableOnDayPredicate("Thu");
+        PersonAvailableOnDayPredicate predicate = new PersonAvailableOnDayPredicate("THU");
         expectedModel.split(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidDay_exceptionThrown() {
-        List<String> invalidDays = Arrays.asList("Monday", "MON", "mon");
+        List<String> invalidDays = Arrays.asList("Monday", "mond", "m");
         for (String invalidDay : invalidDays) {
             SplitCommand command = new SplitCommand(invalidDay);
             assertThrows(CommandException.class,
@@ -55,12 +54,12 @@ public class SplitCommandTest {
 
     @Test
     public void equals() {
-        SplitCommand firstCommand = new SplitCommand("Mon");
-        SplitCommand secondCommand = new SplitCommand("Tue");
+        SplitCommand firstCommand = new SplitCommand("MON");
+        SplitCommand secondCommand = new SplitCommand("TUE");
 
         assertTrue(firstCommand.equals(firstCommand));
 
-        SplitCommand firstCommandCopy = new SplitCommand("Mon");
+        SplitCommand firstCommandCopy = new SplitCommand("MON");
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         assertFalse(firstCommand.equals(secondCommand));

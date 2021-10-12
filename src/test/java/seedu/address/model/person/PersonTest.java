@@ -17,9 +17,9 @@ public class PersonTest {
     @Test
     public void constructor_null_throwsException() {
         assertThrows(NullPointerException.class, () ->
-                new Person(new Name(null), new Phone("92929292"), new Availability("Mon")));
+                new Person(new Name(null), new Phone("92929292"), new Availability("MON")));
         assertThrows(NullPointerException.class, () ->
-                new Person(new Name("Alice"), new Phone(null), new Availability("Mon")));
+                new Person(new Name("Alice"), new Phone(null), new Availability("MON")));
         assertThrows(NullPointerException.class, () ->
                 new Person(new Name("Alice"), new Phone("92929292"), new Availability(null)));
     }
@@ -53,11 +53,11 @@ public class PersonTest {
     @Test
     public void isAvailableOnDay_success() {
         Person person = new PersonBuilder().build();
-        assertFalse(person.isAvailableOnDay("Mon"));
-        person = new PersonBuilder().withAvailability("Mon Tue").build();
-        assertTrue(person.isAvailableOnDay("Mon"));
-        assertTrue(person.isAvailableOnDay("Tue"));
-        assertFalse(person.isAvailableOnDay("Fri"));
+        assertFalse(person.isAvailableOnDay("MON"));
+        person = new PersonBuilder().withAvailability("MON TUE").build();
+        assertTrue(person.isAvailableOnDay("MON"));
+        assertTrue(person.isAvailableOnDay("TUE"));
+        assertFalse(person.isAvailableOnDay("FRI"));
     }
 
     @Test
