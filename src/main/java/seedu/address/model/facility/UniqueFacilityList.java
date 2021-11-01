@@ -70,23 +70,6 @@ public class UniqueFacilityList implements Iterable<Facility> {
         }
     }
 
-    /**
-     * Removes specified person from the allocation list.
-     *
-     * @param toRemove Person to be removed
-     */
-    public void removePersonFromAllocations(Person toRemove) {
-        requireNonNull(toRemove);
-        for (Facility facility : facilityList) {
-            Facility toEdit = facility;
-            if (facility.isPersonAllocated(toRemove)) {
-                facility.removePersonFromFacility(toRemove);
-                setFacility(facility, toEdit);
-                return;
-            }
-        }
-    }
-
     @Override
     public Iterator<Facility> iterator() {
         return facilityList.iterator();

@@ -122,13 +122,8 @@ documentation.
   e.g. `n/NAME p/PHONE_NUMBER [d/DAY(S)] [t/TAG]...` can be used as `n/Ben p/91111111 d/1` or as `n/John p/91111111` or
   as `n/John p/91111111 t/exco`.
 
-* Items with `...` after them can be used multiple times including zero times, by repeating the character with slash symbol,
-  if present, and the parameter.<br>
+* Items with `...` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]...` can be used as ` `(i.e. 0 times), `t/exco`, `t/exco t/y2`etc.
-  
-* Parameters with `(S)` at the end, can be supplied one or more times without repeating the characters with slash
-  symbols.<br>
-  e.g. `d/DAY(S)` can be used as `d/1`, `d/1 2`, etc.
 
 * Parameters with the slash symbols can be in any order.<br>
   e.g. if the command specifies `n/NAME l/LOCATION`, `l/LOCATION n/NAME` is also acceptable.
@@ -149,12 +144,12 @@ documentation.
 
 Adds a member to your members list.
 
-Format: `addm n/NAME p/PHONE_NUMBER [d/DAY(S)] [t/TAG]...`
+Format: `addm n/NAME p/PHONE_NUMBER [d/DAY(s)] [t/TAG]...`
 
-* `DAY(S)` is an optional field indicating a list of days for which the member is available for that week
-* `DAY(S)` should be provided as numerical index, where `1` represents Monday, `2` represents Tuesday … and `7` represents
+* `DAY(s)` is an optional field indicating a list of days for which the member is available for that week
+* `DAY(s)` should be provided as numerical index, where `1` represents Monday, `2` represents Tuesday … and `7` represents
   Sunday
-* Members added without `DAY(S)` will have no available days by default
+* Members added without `DAY(s)` will have no available days by default
 * `TAG` is an optional field indicating the tags associated with the member
 
 <div markdown="block" class="alert alert-info">
@@ -289,15 +284,15 @@ Examples:
 The availability of your members can change frequently. Thus, instead of having to individually edit your members' availability, use
 `setm` to set the availability of given member(s) at one go.
 
-Format: `setm INDEX [MORE_INDICES]... d/DAY(S)`
+Format: `setm INDEX/INDICES d/DAY(S)`
 
-* Sets the availability of the member(s) at the specified `INDEX` and `MORE_INDICES` to be the specified `DAY(S)`
+* Sets the availability of the member(s) at the specified `INDEX/INDICES` to be the specified `DAY(s)`
 * Availability is defined as days of the week when member is free
 * `DAY` **must be a positive integer from 1 to 7**, whereby 1 represents Monday and 7 represents Sunday.
 * `DAYS` **must be separated by a single space** 1 2 3 …​
-* `INDEX` and `MORE_INDICES` refer to the index number(s) shown in the displayed member list
-* `INDEX` and `MORE_INDICES` **must be positive integers** 1, 2, 3, …​
-* `MORE_INDICES` **must be separated by a single space** 1 2 3 …​
+* `INDEX` refers to the index number shown in the displayed member list
+* `INDICES` **must be positive integers** 1, 2, 3, …​
+* `INDICES` **must be separated by a single space**
 
 Examples:
 
@@ -317,12 +312,12 @@ Examples:
 
 Marks attendance of members listed as present, represented by a tick.
 
-Format: `mark INDEX [MORE_INDICES]...`
+Format: `mark INDEX/INDICES`
 
-* Marks the member(s) at the specified `INDEX` and `MORE_INDICES` in the members list as present
-* `INDEX` and `MORE_INDICES` refers to the index number of the member in the displayed members list
-* `INDEX` and `MORE_INDICES` **must be positive integers** 1, 2, 3 …​
-* `MORE_INDICES` **must be separated only by whitespaces** 1 2 3 …​
+* Marks the members at the specified `INDEX/INDICES` in the members list as present
+* `INDEX` refers to the index number/position of the member in the displayed members list
+* `INDICES` **must be positive integers** 1, 2, …​
+* `INDICES` **must be separated only by whitespaces** 1 2 3 …​
 
 Examples:
 
@@ -338,12 +333,12 @@ Examples:
 
 Unmarks attendance of members marked as present, represented by a cross.
 
-Format `unmark INDEX [MORE_INDICES]...`
+Format `unmark INDEX/INDICES`
 
-* Unmarks the member(s) at the specified `INDEX` and `MORE_INDICES` in the members list as not present
-* `INDEX` and `MORE_INDICES` refers to the index number of the member in the displayed members list
-* `INDEX` and `MORE_INDICES` **must be positive integers** 1, 2, 3 …​
-* `MORE_INDICES` **must be separated only by whitespaces** 1 2 3 …​
+* Unmarks the members at the specified `INDEX/INDICES` in the members list as not present
+* `INDEX` refers to the index number/position of the member in the displayed members list
+* `INDICES` **must be positive integers** 1, 2, …​
+* `INDICES` **must be separated only by whitespaces** 1 2 3 …​
 
 Examples:
 * `unmark 1 2` unmarks the attendance of members at indices 1 and 2 as not present
@@ -501,9 +496,9 @@ Examples:
 If you want to see specific facilities you are looking for, `findf` lets you find and filter facilities whose location contains
 any of the given keywords.
 
-Format: `findf KEYWORD [MORE_KEYWORDS]...`
+Format: `findf KEYWORD [MORE_KEYWORDS]`
 
-* `KEYWORD` and `MORE_KEYWORDS` are case-insensitive. e.g. `Utown` will match `utown`
+* `KEYWORD` is case-insensitive. e.g. `Utown` will match `utown`
 * Only the location is searched
 * Only full words will be matched e.g. `Utown` will not match `town`
 * Facilities matching at least one keyword will be returned (i.e. OR search) e.g `Utown Redhill` will
@@ -535,11 +530,6 @@ Format: `split DAY`
 
 **:information_source: Note:** SportsPA will warn you when there are no members available on the specified day or insufficient facilities
 to accommodate all available members and the allocation will not be executed.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you execute the split command after executing the allocate or deallocate command, it will **overwrite** the previous allocations and
-deallocations you have made.
 </div>
 
 Examples:
@@ -733,13 +723,13 @@ Action | Format, Examples
 **Add member**| `addm n/NAME p/PHONE_NUMBER [d/DAY(S)] [t/TAG]...` <br> e.g. `addm n/John Doe p/91111111`, `addm n/John Doe p/91111111 d/1 3 5`, `addm n/John Doe p/91111111 d/1 3 5 t/exco`
 **List members**| `listm`
 **Delete member**| `deletem INDEX` <br> e.g. `deletem 1`
-**Edit member**| `editm INDEX [n/NAME] [p/PHONE_NUMBER] [t/TAG]...` <br> e.g. `editm 1 n/Jonathan p/93837283`
+**Edit member**| `editm INDEX [n/NAME] [p/PHONE_NUMBER] [d/DAYS]` <br> e.g. `editm 1 n/Jonathan p/93837283`
 **Find member**| `findm [n/NAME] [p/PHONE] [d/DAY(S)] [tda/TODAY_ATTENDANCE] [tta/TOTAL_ATTENDANCE] [t/TAG]...` <br> e.g. `findm n/John`, `findm t/exco t/y2`
 **Sort members**| `sortm by/SORT_ORDER` <br> e.g. `sortm by/name`, `sortm by/tag`
-**Set member availability**| `setm INDEX [MORE_INDICES]... d/DAY(S)` <br> e.g.`setm 1 2 3 d/2 3 5`
-**Mark member attendance**| `mark INDEX [MORE_INDICES]...` <br> e.g. `mark 1 2`
-**Unmark member attendance**| `unmark INDEX [MORE_INDICES]...` <br> e.g. `unmark 1 2`
-**Clear membber attendance**| `cleara`
+**Mark member attendance**| `mark INDEX/INDICES` <br> e.g. `mark 1 2`
+**Set member availability**| `setm INDEX/INDICES d/DAY(S)...` <br> e.g.`setm 1 2 3 d/Tue Wed`
+**Unmark member attendance**| `unmark INDEX/INDICES` <br> e.g. `unmark 1 2`
+**Set member availability**| `setm INDEX/INDICES d/DAY(S)...` <br> e.g.`setm 1 2 3 d/2 3 5`
 **Import multiple members**| `import CSV_FILE_PATH` <br> e.g.`import myFile.csv`
 **Clear member**| `clearm`
 
@@ -753,8 +743,8 @@ Action | Format, Examples
 **List facilities**| `listf`
 **Delete facility**| `deletef INDEX` <br> e.g. `deletef 4`
 **Edit facility**| `editf INDEX [n/NAME] [l/LOCATION] [t/TIME] [c/CAPACITY]` <br> e.g. `editf 2 n/Court 20 l/University Sports Hall`
-**Find facility**| `findf KEYWORD [MORE_KEYWORDS]...` <br> e.g. `findf Clementi`, `findf Utown`
-**Split members into facilities**| `split DAY` <br> e.g. `split 1`
+**Find facility**| `findf KEYWORD` <br> e.g. `findf Clementi`, `findf Utown`
+**Split members into facilities**| `split DAY` <br> e.g. `split Mon`
 **Deallocate member from a facility**|`deallocate MEMBER_INDEX FACILITY_INDEX DAY` <br> e.g. `deallocate 2 3 4`
 **Allocate member to a facility**|`allocate MEMBER_INDEX FACILITY_INDEX DAY` <br> e.g. `allocate 1 2 5`
 **Export facility details and<br>member allocation**| `export`

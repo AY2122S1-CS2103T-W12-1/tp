@@ -22,8 +22,8 @@ public class SetMemberAvailabilityCommand extends Command {
             + ": Sets the availability of the members identified "
             + "by the indices used in the last member listing. "
             + "Existing availability will be overwritten by the input.\n"
-            + "Parameters: INDEX [MORE_INDICES]... (must be positive integers) "
-            + "d/DAY(S) (where 1 represents Monday, 2 represents Tuesday ... and 7 represents Sunday\n"
+            + "Parameters: INDEX1 INDEX2 INDEX3 (must be positive integers) "
+            + "d/AVAILABLE DAYS (where 1 represents Monday, 2 represents Tuesday ... and 7 represents Sunday\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "d/1 2 3 7";
 

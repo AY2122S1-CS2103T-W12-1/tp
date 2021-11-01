@@ -17,7 +17,7 @@ public class UnmarkAttendanceCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unmarks attendance of members identified by the indices used\n"
             + " in the members list"
-            + "Parameters: INDEX [MORE_INDICES]... (must be positive integers)\n"
+            + "Parameters: INDEX1 INDEX2 INDEX3... (must be positive integers)\n"
             + "Example: " + COMMAND_WORD + "1 2 3";
     public static final String MESSAGE_SUCCESS = "Unmarked attendance of members for today";
 
