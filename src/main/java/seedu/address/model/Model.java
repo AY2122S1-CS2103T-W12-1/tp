@@ -220,4 +220,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFacilityList(Predicate<Facility> predicate);
+
+    /**
+     * Returns the internal unmodifiable member list.
+     */
+    ObservableList<Member> getInternalMemberList();
+
+    /**
+     * Returns the internal unmodifiable facility list.
+     */
+    ObservableList<Facility> getInternalFacilityList();
 }
