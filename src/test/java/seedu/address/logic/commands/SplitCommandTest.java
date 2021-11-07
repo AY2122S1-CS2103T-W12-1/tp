@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SportsPa;
@@ -51,9 +52,7 @@ public class SplitCommandTest {
     public void execute_emptyMemberList_throwsCommandException() {
         SplitCommand command = new SplitCommand(1);
         Model model = new ModelManager(new SportsPa(), new UserPrefs());
-        assertCommandFailure(command, model, String.format(
-                SplitCommand.MESSAGE_NO_MEMBERS_AVAILABLE,
-                DayOfWeek.of(1).getDisplayName(TextStyle.FULL, Locale.getDefault())));
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
     }
 
     @Test
@@ -75,8 +74,7 @@ public class SplitCommandTest {
         Model model = new ModelManager(new SportsPa(), new UserPrefs());
         model.addMember(AMY);
         model.addMember(BOB);
-        String expectedMessage = String.format(SplitCommand.MESSAGE_INSUFFICIENT_FACILITIES,
-                DayOfWeek.of(1).getDisplayName(TextStyle.FULL, Locale.getDefault()), 2);
+        String expectedMessage = String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY);
         assertCommandFailure(command, model, expectedMessage);
     }
 

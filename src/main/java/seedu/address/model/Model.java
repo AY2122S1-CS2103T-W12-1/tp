@@ -26,6 +26,12 @@ public interface Model {
     /** {@code Predicate} that always evaluates to true */
     Predicate<Facility> PREDICATE_SHOW_ALL_FACILITIES = unused -> true;
 
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Member> PREDICATE_SHOW_NO_MEMBERS = unused -> false;
+
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Facility> PREDICATE_SHOW_NO_FACILITIES = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

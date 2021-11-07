@@ -98,6 +98,13 @@ public class DeleteMemberCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
+    @Test
+    public void execute_emptyMemberList_failure() {
+        showNoMember(model);
+        DeleteMemberCommand command = new DeleteMemberCommand(INDEX_FIRST);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
+    }
+
     /**
      * Updates {@code model}'s filtered list to show no one.
      */

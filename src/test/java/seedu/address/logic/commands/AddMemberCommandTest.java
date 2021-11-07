@@ -233,6 +233,16 @@ public class AddMemberCommandTest {
         }
 
         @Override
+        public ObservableList<Member> getInternalMemberList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ObservableList<Facility> getInternalFacilityList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public Member getSameMember(Member member) {
             throw new AssertionError("This method should not be called");
         }

@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFacilities.TAMPINES_HUB_FIELD_SECTION_B;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalMembers.AMY;
+import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPa;
 
 import java.time.DayOfWeek;
 
@@ -62,5 +63,23 @@ public class DeallocateMemberCommandTest {
 
         DeallocateMemberCommand command = new DeallocateMemberCommand(INDEX_FIRST, INDEX_FIRST, DayOfWeek.MONDAY);
         assertCommandFailure(command, model, Messages.MESSAGE_MEMBER_NOT_ALLOCATED);
+    }
+
+    @Test
+    public void execute_emptyMemberList_failure() {
+        Model model = new ModelManager(getTypicalSportsPa(), new UserPrefs());
+        model.updateFilteredMemberList(Model.PREDICATE_SHOW_NO_MEMBERS);
+
+        DeallocateMemberCommand command = new DeallocateMemberCommand(INDEX_FIRST, INDEX_FIRST, DayOfWeek.SUNDAY);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
+    }
+
+    @Test
+    public void execute_emptyFacilityList_failure() {
+        Model model = new ModelManager(getTypicalSportsPa(), new UserPrefs());
+        model.updateFilteredFacilityList(Model.PREDICATE_SHOW_NO_FACILITIES);
+
+        DeallocateMemberCommand command = new DeallocateMemberCommand(INDEX_FIRST, INDEX_FIRST, DayOfWeek.SUNDAY);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY));
     }
 }

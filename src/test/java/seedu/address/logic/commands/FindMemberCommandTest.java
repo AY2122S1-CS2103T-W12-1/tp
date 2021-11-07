@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MEMBERS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalMembers.ALICE;
 import static seedu.address.testutil.TypicalMembers.ALICE_TAN;
+import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPaEmptyMemberList;
 import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPaToFind;
 
 import java.util.Arrays;
@@ -14,6 +16,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -71,6 +74,14 @@ public class FindMemberCommandTest {
         expectedModel.updateFilteredMemberList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, ALICE_TAN), model.getFilteredMemberList());
+    }
+
+    @Test
+    public void execute_emptyMemberList_failure() {
+        Model model = new ModelManager(getTypicalSportsPaEmptyMemberList(), new UserPrefs());
+        NameContainsKeywordsPredicate predicate = preparePredicate("alice");
+        FindMemberCommand command = new FindMemberCommand(predicate);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
     }
 
     /**

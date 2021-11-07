@@ -98,6 +98,13 @@ public class DeleteFacilityCommandTest {
         assertFalse(deleteFacilFirstCommand.equals(deleteFacilSecondCommand));
     }
 
+    @Test
+    public void execute_emptyFacilityList_failure() {
+        showNoFacility(model);
+        DeleteFacilityCommand command = new DeleteFacilityCommand(INDEX_FIRST);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY));
+    }
+
     /**
      * Updates {@code model}'s filtered facility list to show no one.
      */

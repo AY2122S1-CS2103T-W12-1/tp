@@ -234,4 +234,13 @@ public class EditFacilityCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditFacilityCommand(INDEX_FIRST, desc2)));
     }
+
+    @Test
+    public void execute_emptyFacilityList_failure() {
+        Facility editedFacility = new FacilityBuilder().build();
+        EditFacilityDescriptor descriptor = new EditFacilityDescriptorBuilder(editedFacility).build();
+        model.updateFilteredFacilityList(Model.PREDICATE_SHOW_NO_FACILITIES);
+        EditFacilityCommand command = new EditFacilityCommand(INDEX_FIRST, descriptor);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY));
+    }
 }

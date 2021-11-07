@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
+import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPa;
 
 import java.util.Arrays;
 
@@ -42,10 +43,22 @@ class UnmarkAttendanceCommandTest {
 
     @Test
     public void execute_invalidIndices_throwsCommandException() {
+        Member firstMember = new MemberBuilder().withName("John").build();
+        Member secondMember = new MemberBuilder().withName("Mat").build();
+        model.addMember(firstMember);
+        model.addMember(secondMember);
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredMemberList().size() + 1);
         UnmarkAttendanceCommand command = new UnmarkAttendanceCommand(Arrays.asList(outOfBoundsIndex));
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_emptyMemberList_failure() {
+        Model model = new ModelManager(getTypicalSportsPa(), new UserPrefs());
+        model.updateFilteredMemberList(Model.PREDICATE_SHOW_NO_MEMBERS);
+        UnmarkAttendanceCommand command = new UnmarkAttendanceCommand(Arrays.asList(INDEX_FIRST));
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
     }
 
     @Test

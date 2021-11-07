@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFacilities.KENT_RIDGE_OUTDOOR_TENNIS_COURTS_COURT_1;
 import static seedu.address.testutil.TypicalFacilities.KENT_RIDGE_OUTDOOR_TENNIS_COURTS_COURT_10;
 import static seedu.address.testutil.TypicalFacilities.UTOWN_FIELD_SECTION_A;
 import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPa;
+import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPaEmptyFacilityList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -76,6 +78,14 @@ public class FindFacilityCommandTest {
                         KENT_RIDGE_OUTDOOR_TENNIS_COURTS_COURT_10,
                         UTOWN_FIELD_SECTION_A),
                 model.getFilteredFacilityList());
+    }
+
+    @Test
+    public void execute_emptyFacilityList_failure() {
+        Model model = new ModelManager(getTypicalSportsPaEmptyFacilityList(), new UserPrefs());
+        LocationContainsKeywordsPredicate predicate = preparePredicate("Tennis Utown");
+        FindFacilityCommand command = new FindFacilityCommand(predicate);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY));
     }
 
     /**

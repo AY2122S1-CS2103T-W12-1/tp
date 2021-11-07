@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_LIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MEMBER;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;

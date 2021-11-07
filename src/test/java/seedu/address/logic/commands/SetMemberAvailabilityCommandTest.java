@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalMembers.AMY;
 import static seedu.address.testutil.TypicalMembers.BOB;
+import static seedu.address.testutil.TypicalSportsPa.getTypicalSportsPa;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Availability;
 import seedu.address.testutil.MemberBuilder;
 
@@ -60,6 +62,16 @@ public class SetMemberAvailabilityCommandTest {
                 expectedAvailability);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDICES);
+    }
+
+    @Test
+    public void execute_emptyMemberList_failure() {
+        Model model = new ModelManager(getTypicalSportsPa(), new UserPrefs());
+        model.updateFilteredMemberList(Model.PREDICATE_SHOW_NO_MEMBERS);
+        Availability expectedAvailability = new Availability(List.of(DayOfWeek.of(6), DayOfWeek.of(7)));
+        SetMemberAvailabilityCommand command = new SetMemberAvailabilityCommand(List.of(INDEX_FIRST, INDEX_SECOND),
+                expectedAvailability);
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
     }
 
     @Test

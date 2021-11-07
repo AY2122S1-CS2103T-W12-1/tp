@@ -216,4 +216,13 @@ public class EditMemberCommandTest {
         assertFalse(standardCommand.equals(new EditMemberCommand(INDEX_FIRST, DESC_BOB)));
     }
 
+    @Test
+    public void execute_emptyMemberList_failure() {
+        Member editedMember = new MemberBuilder().build();
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(editedMember).build();
+        EditMemberCommand editCommand = new EditMemberCommand(INDEX_FIRST, descriptor);
+        model.updateFilteredMemberList(Model.PREDICATE_SHOW_NO_MEMBERS);
+        assertCommandFailure(editCommand, model, String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
+    }
+
 }

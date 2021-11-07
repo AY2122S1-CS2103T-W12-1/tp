@@ -46,6 +46,9 @@ public class SplitCommand extends Command {
         if (model.getInternalMemberList().isEmpty()) {
             throw new CommandException(String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
         }
+        if (model.getInternalFacilityList().isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY));
+        }
         MemberAvailableOnDayPredicate predicate = new MemberAvailableOnDayPredicate(dayNumber);
         int result = model.split(predicate, dayNumber);
         if (result == -1) {
