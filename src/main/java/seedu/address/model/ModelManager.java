@@ -18,7 +18,7 @@ import seedu.address.model.alias.AliasMap;
 import seedu.address.model.alias.CommandWord;
 import seedu.address.model.alias.Shortcut;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.sort.SortOrder;
 
 
@@ -225,9 +225,19 @@ public class ModelManager implements Model {
         requireNonNull(toFind);
         return sportsPa.getMemberList()
                 .stream()
-                .filter(person -> person.isSameMember(toFind))
+                .filter(member -> member.isSameMember(toFind))
                 .findAny()
                 .orElse(null);
+    }
+
+    @Override
+    public boolean isValidImport(Member toCheck) {
+        requireNonNull(toCheck);
+        long count = sportsPa.getMemberList()
+                .stream()
+                .filter(member -> member.isSameMember(toCheck))
+                .count();
+        return count <= 1;
     }
 
     @Override

@@ -4,37 +4,29 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.time.DayOfWeek;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import static seedu.address.testutil.TypicalFacilities.FIELD;
+import static seedu.address.testutil.TypicalFacilities.KENT_RIDGE_OUTDOOR_TENNIS_COURTS_COURT_1;
+import static seedu.address.testutil.TypicalFacilities.TAMPINES_HUB_FIELD_SECTION_B;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.facility.AllocationMap;
-import seedu.address.model.facility.Capacity;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.facility.FacilityName;
-import seedu.address.model.facility.Location;
-import seedu.address.model.facility.Time;
-import seedu.address.model.person.Member;
+import seedu.address.testutil.FacilityBuilder;
 
 public class AddFacilityCommandTest {
-    public static final Map<DayOfWeek, List<Member>> DEFAULT_ALLOCATION_MAP = new EnumMap<>(DayOfWeek.class);
     @Test
     public void constructor_null_exceptionThrown() {
         assertThrows(NullPointerException.class, () -> new AddFacilityCommand(null));
     }
 
     @Test
-    public void execute_addSuccessful() {
+    public void execute_facilityAcceptedByModel_addSuccessful() {
         ModelManager model = new ModelManager();
-        Facility facility = new Facility(new FacilityName("Court"), new Location("Loc"), new Time("1500"),
-                new Capacity("5"), new AllocationMap(DEFAULT_ALLOCATION_MAP));
+        Facility facility = new FacilityBuilder(KENT_RIDGE_OUTDOOR_TENNIS_COURTS_COURT_1).build();
         Model expectedModel = new ModelManager(model.getSportsPa(), new UserPrefs());
         expectedModel.addFacility(facility);
         AddFacilityCommand command = new AddFacilityCommand(facility);
@@ -43,21 +35,38 @@ public class AddFacilityCommandTest {
     }
 
     @Test
-    public void equals() {
-        Facility court = new Facility(new FacilityName("Court"), new Location("Loc"), new Time("1500"),
-                new Capacity("5"), new AllocationMap(DEFAULT_ALLOCATION_MAP));
+    public void execute_duplicateFacility_throwsCommandException() {
+        Facility facility = new FacilityBuilder().build();
+        Model model = new ModelManager();
+        model.addFacility(facility);
+        AddFacilityCommand addFacilityCommand = new AddFacilityCommand(facility);
 
-        Facility field = new Facility(new FacilityName("Field"), new Location("Test"), new Time("1300"),
-                new Capacity("10"), new AllocationMap(DEFAULT_ALLOCATION_MAP));
+        assertThrows(CommandException.class,
+                AddFacilityCommand.MESSAGE_DUPLICATE_FACILITY, () -> addFacilityCommand.execute(model));
+    }
+
+    @Test
+    public void equals() {
+        Facility court = new FacilityBuilder(TAMPINES_HUB_FIELD_SECTION_B).build();
+        Facility field = new FacilityBuilder(FIELD).build();
 
         AddFacilityCommand addCourtCommand = new AddFacilityCommand(court);
-        AddFacilityCommand addCourtCommandCopy = new AddFacilityCommand(court);
         AddFacilityCommand addFieldCommand = new AddFacilityCommand(field);
 
+        //same objects -> returns true
         assertTrue(addCourtCommand.equals(addCourtCommand));
+
+        //same values -> returns true
+        AddFacilityCommand addCourtCommandCopy = new AddFacilityCommand(court);
         assertTrue(addCourtCommand.equals(addCourtCommandCopy));
+
+        //different facilities -> returns false
         assertFalse(addCourtCommand.equals(addFieldCommand));
+
+        //null -> returns false
         assertFalse(addCourtCommand.equals(null));
+
+        //different types -> returns false
         assertFalse(addCourtCommand.equals("10"));
     }
 }

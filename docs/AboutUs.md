@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/shruthi0310.png" width="200px">
 
 [[github](https://github.com/shruthi0310)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/shruthi0310.md)]
 
 * Role: Project Advisor
 
@@ -33,17 +33,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/moley456.png" width="200px">
 
 [[github](http://github.com/Moley456)]
-[[portfolio](team/Moley456.md)]
+[[portfolio](team/moley456.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Data + Storage
 
 ### Seow Xiu Wen
 
 <img src="images/yoyociti.png" width="200px">
 
 [[github](http://github.com/YoYoCiti)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yoyociti.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Documentation
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tsinyee.png" width="200px">
 
 [[github](http://github.com/tsinyee)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/tsinyee.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Model

@@ -45,6 +45,7 @@ public class MarkAttendanceCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
 
+        assert indices != null : "indices should be initialised";
         model.markMembersAttendance(indices);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }

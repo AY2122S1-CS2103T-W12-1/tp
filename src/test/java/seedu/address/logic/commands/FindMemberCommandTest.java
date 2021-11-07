@@ -20,7 +20,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.member.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindMemberCommand}.
@@ -52,7 +52,7 @@ public class FindMemberCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different member -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

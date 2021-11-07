@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.person.Availability;
-import seedu.address.model.person.Member;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TodayAttendance;
-import seedu.address.model.person.TotalAttendance;
+import seedu.address.model.member.Availability;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.Name;
+import seedu.address.model.member.Phone;
+import seedu.address.model.member.TodayAttendance;
+import seedu.address.model.member.TotalAttendance;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

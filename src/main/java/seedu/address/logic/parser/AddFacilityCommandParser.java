@@ -22,7 +22,7 @@ import seedu.address.model.facility.Facility;
 import seedu.address.model.facility.FacilityName;
 import seedu.address.model.facility.Location;
 import seedu.address.model.facility.Time;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Parses input arguments and creates a new AddFacilityCommand object.
@@ -38,11 +38,13 @@ public class AddFacilityCommandParser implements Parser<AddFacilityCommand> {
      */
     public AddFacilityCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultiMap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_LOCATION, PREFIX_TIME, PREFIX_CAPACITY);
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+                PREFIX_LOCATION, PREFIX_TIME, PREFIX_CAPACITY);
+        boolean arePrefixesPresent = arePrefixesPresent(argMultiMap, PREFIX_NAME, PREFIX_LOCATION,
+                PREFIX_TIME, PREFIX_CAPACITY);
+        boolean isPreambleEmpty = argMultiMap.getPreamble().isEmpty();
 
-        if (!arePrefixesPresent(argMultiMap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_TIME, PREFIX_CAPACITY)
-                || !argMultiMap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddFacilityCommand.MESSAGE_USAGE));
         }
@@ -51,6 +53,7 @@ public class AddFacilityCommandParser implements Parser<AddFacilityCommand> {
         Location location = ParserUtil.parseLocation(argMultiMap.getValue(PREFIX_LOCATION).get());
         Time time = ParserUtil.parseTime(argMultiMap.getValue(PREFIX_TIME).get());
         Capacity capacity = ParserUtil.parseCapacity(argMultiMap.getValue(PREFIX_CAPACITY).get());
+
         // add command does not allow adding allocations
         Map<DayOfWeek, List<Member>> allocationMap = new EnumMap<>(DayOfWeek.class);
         for (DayOfWeek day : DayOfWeek.values()) {
@@ -66,7 +69,7 @@ public class AddFacilityCommandParser implements Parser<AddFacilityCommand> {
      *
      * @param argMultiMap ArgumentMultimap containing the prefixes.
      * @param prefixes Prefixes that need to present.
-     * @return boolean value of whether all prefixes are non-empty.
+     * @return Boolean value of whether all prefixes are non-empty.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argMultiMap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argMultiMap.getValue(prefix).isPresent());

@@ -95,6 +95,7 @@ class AddFacilityCommandParserTest {
         //missing capacity prefix
         assertParseFailure(parser, NAME_DESC_COURT + LOCATION_DESC_COURT + TIME_DESC_COURT + VALID_CAPACITY_COURT,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFacilityCommand.MESSAGE_USAGE));
+
         //missing all prefixes
         assertParseFailure(parser, VALID_FACILITY_NAME_COURT + VALID_LOCATION_COURT + VALID_TIME_COURT
                 + VALID_CAPACITY_COURT, String.format(MESSAGE_INVALID_COMMAND_FORMAT,

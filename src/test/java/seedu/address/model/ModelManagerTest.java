@@ -4,13 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalMembers.ALICE;
 import static seedu.address.testutil.TypicalMembers.ALICE_DIFFERENT_PHONE;
+import static seedu.address.testutil.TypicalMembers.AMY;
 import static seedu.address.testutil.TypicalMembers.BENSON;
 import static seedu.address.testutil.TypicalMembers.BOB;
+import static seedu.address.testutil.TypicalMembers.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,8 +25,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Member;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.NameContainsKeywordsPredicate;
+import seedu.address.testutil.MemberBuilder;
 import seedu.address.testutil.SportsPaBuilder;
 
 public class ModelManagerTest {
@@ -104,6 +109,27 @@ public class ModelManagerTest {
     @Test
     public void getSamePerson_personWithSameNameNotInAddressBook_returnsNull() {
         assertNull(modelManager.getSameMember(BOB));
+    }
+
+    @Test
+    public void isValidImport_invalidImport_returnsFalse() {
+        modelManager.addMember(AMY);
+        modelManager.addMember(BOB);
+        Member toTest = new MemberBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(modelManager.isValidImport(toTest));
+    }
+
+    @Test
+    public void isValidImport_validImport_returnsTrue() {
+        modelManager.addMember(BOB);
+        modelManager.addMember(CARL);
+        Member firstToTest = new MemberBuilder().withName(VALID_NAME_AMY).build();
+        Member secondToTest = new MemberBuilder().withPhone(VALID_PHONE_BOB).build();
+        Member thirdToTest = new MemberBuilder().build();
+
+        assertTrue(modelManager.isValidImport(firstToTest));
+        assertTrue(modelManager.isValidImport(secondToTest));
+        assertTrue(modelManager.isValidImport(thirdToTest));
     }
 
     @Test

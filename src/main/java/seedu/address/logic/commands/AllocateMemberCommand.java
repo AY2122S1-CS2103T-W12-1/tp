@@ -17,7 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.facility.AllocationMap;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Allocates a member available on a particular day to a Facility.

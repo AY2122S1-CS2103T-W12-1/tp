@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Represents the mapping of member allocations to the day of the week in a Facility.

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EXCO;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -22,7 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SportsPa;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 import seedu.address.testutil.MemberBuilder;
 
@@ -141,23 +143,47 @@ public class EditMemberCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateNameFilteredList_failure() {
 
+        // edit member in filtered list into a duplicate in address book
         Member firstMember = model.getFilteredMemberList().get(INDEX_FIRST.getZeroBased());
-        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(firstMember).build();
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(firstMember)
+                .withPhone(VALID_PHONE_AMY).build();
         EditMemberCommand editCommand = new EditMemberCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_MEMBER);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicatePhoneFilteredList_failure() {
+
+        // edit member in filtered list into a duplicate in address book
+        Member firstMember = model.getFilteredMemberList().get(INDEX_FIRST.getZeroBased());
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(firstMember)
+                .withName(VALID_NAME_AMY).build();
+        EditMemberCommand editCommand = new EditMemberCommand(INDEX_SECOND, descriptor);
+
+        assertCommandFailure(editCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_MEMBER);
+    }
+
+    @Test
+    public void execute_duplicateNameUnFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST);
 
-        // edit person in filtered list into a duplicate in address book
         Member memberInList = model.getSportsPa().getMemberList().get(INDEX_SECOND.getZeroBased());
         EditMemberCommand editCommand = new EditMemberCommand(INDEX_FIRST,
-                new EditMemberDescriptorBuilder(memberInList).build());
+                new EditMemberDescriptorBuilder(memberInList).withPhone(VALID_PHONE_BOB).build());
+
+        assertCommandFailure(editCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_MEMBER);
+    }
+
+    @Test
+    public void execute_duplicatePhoneUnFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST);
+
+        Member memberInList = model.getSportsPa().getMemberList().get(INDEX_SECOND.getZeroBased());
+        EditMemberCommand editCommand = new EditMemberCommand(INDEX_FIRST,
+                new EditMemberDescriptorBuilder(memberInList).withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_MEMBER);
     }

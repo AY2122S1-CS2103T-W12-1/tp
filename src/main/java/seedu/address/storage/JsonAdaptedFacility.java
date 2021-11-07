@@ -16,7 +16,7 @@ import seedu.address.model.facility.Facility;
 import seedu.address.model.facility.FacilityName;
 import seedu.address.model.facility.Location;
 import seedu.address.model.facility.Time;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Jackson-friendly version of {@link Facility}.

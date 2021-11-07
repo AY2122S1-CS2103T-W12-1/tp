@@ -9,14 +9,14 @@ SportsPa *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueMemberList
 UniqueTagList -[hidden]down- UniqueMemberList
 
-UniqueTagList *-right-> "*" Tag
-UniqueMemberList -right-> Member
+UniqueTagList *-right-> "      *" Tag
+UniqueMemberList -right-> "~*all" Member
 
-Member -up-> "*" Tag
+Member -up-> "        *" Tag
 
-Member *--> Name
-Member *--> Phone
-Member *--> Availability
-Member *--> TodayAttendance
-Member *--> TotalAttendance
+Member *--> "1" Name
+Member *--> "1" Phone
+Member *--> "1" Availability
+Member *--> "1" TodayAttendance
+Member *--> "1" TotalAttendance
 @enduml

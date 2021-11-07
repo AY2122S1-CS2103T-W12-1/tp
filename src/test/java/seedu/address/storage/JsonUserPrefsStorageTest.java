@@ -74,7 +74,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setSportsPaFilePath(Paths.get("sportspa.json"));
+        userPrefs.setSportsPaFilePath(Paths.get("data", "sportspa.json"));
         userPrefs.setAliases(new AliasMap());
         return userPrefs;
     }

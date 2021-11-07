@@ -35,7 +35,7 @@ public class TagsContainKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different member -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

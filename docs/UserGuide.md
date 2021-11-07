@@ -255,12 +255,19 @@ Format: `findm [n/NAME] [p/PHONE] [d/DAY(S)] [tda/TODAY_ATTENDANCE] [tta/TOTAL_A
 * At least one of the optional fields must be provided
 * `findm` is case-insensitive. e.g. `n/john` will match `John`
 * Only full words will be matched e.g. `n/Johnny` will not match `John`
-* `TODAY_ATTENDANCE` must be either `true` or `false`, true being present and false being absent
-* `TOTAL_ATTENDANCE` must be a **non-negative integer** 0, 1, 2, 3...
+* `TODAY_ATTENDANCE` refers to a member's attendance for today and must be either `true` or `false`, true being present and false being absent
+* `TOTAL_ATTENDANCE` refers to a member's attendance in total and must be a **non-negative integer** 0, 1, 2, 3...
 * For `[t/TAG]...`, members matching at least one tag will be listed (i.e. OR search) 
 <br> e.g. `findm t/exco t/y2` will list members with tags `exco` `y2`, and also members with only one matching tag `y2` or `exco`
 * If multiple field keywords are supplied, only members that match all the given field keywords will be listed (i.e. AND search) 
 <br> e.g. `findm n/Amy t/exco` will match `Amy` with the tag `exco` but not `John` with the tag `exco`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** For the parameter `d/DAY(S)`, if the member is not available on any one of the specified days,
+they will not be shown in the filtered list (i.e members have to be available on all specified days in order for them to be 
+shown in the list).
+</div>
 
 Examples:
 
@@ -400,7 +407,7 @@ Format: `import CSV_FILE_PATH`
 * `CSV_FILE_PATH` should be relative to the JAR file location
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If there are duplicate members (i.e. members with the same name) being imported using the CSV file, 
+If there are duplicate members (i.e. members with the same name or same phone number) being imported using the CSV file, 
 the details from the CSV file will overwrite the existing details, except for the attendance data. 
 This action is **irreversible**.
 </div>

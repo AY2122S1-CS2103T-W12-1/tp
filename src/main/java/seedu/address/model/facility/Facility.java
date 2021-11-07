@@ -8,7 +8,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Represents a Facility in SportsPA.

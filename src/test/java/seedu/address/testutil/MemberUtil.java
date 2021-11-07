@@ -9,7 +9,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.EditMemberCommand;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,14 +18,14 @@ import seedu.address.model.tag.Tag;
 public class MemberUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code member}.
      */
     public static String getAddMemberCommand(Member member) {
         return AddMemberCommand.COMMAND_WORD + " " + getPersonDetails(member);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code member}'s details.
      */
     public static String getPersonDetails(Member member) {
         StringBuilder sb = new StringBuilder();

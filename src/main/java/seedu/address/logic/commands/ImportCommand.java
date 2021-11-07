@@ -17,10 +17,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Availability;
-import seedu.address.model.person.Member;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.member.Availability;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.Name;
+import seedu.address.model.member.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +36,9 @@ public class ImportCommand extends Command {
             + "Parameters: KEYWORD CSV_FILE_PATH\n"
             + "Example: " + COMMAND_WORD + " myFilePath.csv";
     public static final String MESSAGE_FILE_NOT_FOUND = "No CSV file called %s found.";
-    public static final String MESSAGE_SUCCESS = "Successfully imported from CSV file!";
+    public static final String MESSAGE_SUCCESS_NO_SKIP = "Successfully imported from CSV file with no skipped entries!";
+    public static final String MESSAGE_SUCCESS_WITH_SKIP =
+            "Partially successful import from CSV file with some skipped entries:\n%s";
 
     private final String filePath;
 
@@ -53,7 +55,12 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ArrayList<Member> memberList = parseCsv();
+        ArrayList<Member> skippedMembers = new ArrayList<>();
         for (Member member : memberList) {
+            if (!model.isValidImport(member)) {
+                skippedMembers.add(member);
+                continue;
+            }
             if (model.hasMember(member)) {
                 Member memberToReplace = model.getSameMember(member);
                 requireNonNull(memberToReplace);
@@ -69,7 +76,12 @@ public class ImportCommand extends Command {
                 model.addMember(member);
             }
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        String skippedMembersString = skippedMembers.toString().replaceAll(", ", "\n");
+        if (skippedMembers.isEmpty()) {
+            return new CommandResult(MESSAGE_SUCCESS_NO_SKIP);
+        } else {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_WITH_SKIP, skippedMembersString));
+        }
     }
 
     /**

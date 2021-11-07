@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalMembers.getTypicalMembersUnsortedTag
 
 import seedu.address.model.SportsPa;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 public class TypicalSportsPa {
     private TypicalSportsPa() {} // Prevents instantiation

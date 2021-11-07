@@ -18,7 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.testutil.MemberBuilder;
 
 public class MarkAttendanceCommandTest {
@@ -26,12 +26,14 @@ public class MarkAttendanceCommandTest {
 
     @Test
     public void execute_validIndices_success() {
-        Member firstMember = new MemberBuilder().withName("John").build();
+
+        //add 2 members with index 1 and 2 respectively in the list
+        Member firstMember = new MemberBuilder().withName("John").withPhone("83452732").build();
         Member secondMember = new MemberBuilder().withName("Mat").build();
         model.addMember(firstMember);
         model.addMember(secondMember);
-        MarkAttendanceCommand command = new MarkAttendanceCommand(Arrays.asList(INDEX_FIRST, INDEX_SECOND));
 
+        MarkAttendanceCommand command = new MarkAttendanceCommand(Arrays.asList(INDEX_FIRST, INDEX_SECOND));
         String expectedMessage = MarkAttendanceCommand.MESSAGE_SUCCESS;
 
         Model expectedModel = new ModelManager(model.getSportsPa(), new UserPrefs());
@@ -63,16 +65,21 @@ public class MarkAttendanceCommandTest {
         MarkAttendanceCommand markFirstCommand = new MarkAttendanceCommand(Arrays.asList(INDEX_FIRST, INDEX_THIRD));
         MarkAttendanceCommand markSecondCommand = new MarkAttendanceCommand(Arrays.asList(INDEX_SECOND));
 
+        //same object -> returns true
         assertTrue(markFirstCommand.equals(markFirstCommand));
 
+        //same value -> returns true
         MarkAttendanceCommand markFirstCommandCopy = new MarkAttendanceCommand(Arrays.asList(INDEX_FIRST,
                 INDEX_THIRD));
         assertTrue(markFirstCommand.equals(markFirstCommandCopy));
 
+        //different values -> returns false
         assertFalse(markFirstCommand.equals(markSecondCommand));
 
+        //null -> returns false
         assertFalse(markFirstCommand.equals(null));
 
+        //different types -> returns false
         assertFalse(markFirstCommand.equals("1"));
     }
 }

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SetMemberAvailabilityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Availability;
+import seedu.address.model.member.Availability;
 
 /**
  * Parses input arguments and creates a new SetMemberAvailabilityCommand object.

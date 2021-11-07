@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * Highlights: This enhancement was difficult to implement as there were various classes needed to represent facilities and their attributes, before the command can be implemented.
     * Pull request: [\#96](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/96)
 
-* **New Feature**: Added the ability to split members to facilities.
+* **New Feature**: Added the skeleton of ability to split members to facilities.
     * What it does: allows the user to add facilities to split members and allocate them to various facilities based on total capacity.
     * Justification: This feature improves the product significantly because the target users can easily allocate their members to different locations while ensuring venue capacity is met.
     * Highlights: This enhancement was challenging to implement and to test if it worked as it required a command to set availability of the members. But at the time this feature was implemented,

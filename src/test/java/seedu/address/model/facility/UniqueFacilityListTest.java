@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.facility.exceptions.DuplicateFacilityException;
 import seedu.address.model.facility.exceptions.FacilityNotFoundException;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.testutil.FacilityBuilder;
 import seedu.address.testutil.MemberBuilder;
 

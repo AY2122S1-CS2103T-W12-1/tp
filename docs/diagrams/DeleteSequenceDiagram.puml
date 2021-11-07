@@ -48,7 +48,7 @@ deactivate SportsPaParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteMember(1)
+DeleteCommand -> Model : deleteMember(m)
 activate Model
 
 Model --> DeleteCommand

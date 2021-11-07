@@ -32,7 +32,7 @@
             <Label fx:id="loc" styleClass="cell_small_label" text="\$location" />
             <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
             <Label fx:id="capacity" styleClass="cell_small_label" text="\$capacity" />
-            <Label fx:id="personAllocated" styleClass="cell_small_label" text="\$personAllocated"/>
+            <Label fx:id="memberAllocated" styleClass="cell_small_label" text="\$memberAllocated"/>
         </VBox>
     </GridPane>
 </HBox>

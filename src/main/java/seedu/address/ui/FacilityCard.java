@@ -34,7 +34,7 @@ public class FacilityCard extends UiPart<Region> {
     private Label listIndex;
 
     @FXML
-    private Label personAllocated;
+    private Label memberAllocated;
 
     /**
      * Creates a FacilityCard with the specified facility and index.
@@ -50,7 +50,7 @@ public class FacilityCard extends UiPart<Region> {
         loc.setText(facility.getLocation().toString());
         time.setText("Start time: " + facility.getTime().toString());
         capacity.setText("Max capacity: " + facility.getCapacity().toString());
-        personAllocated.setText(facility.getAllocationMap().toString());
+        memberAllocated.setText(facility.getAllocationMap().toString());
     }
 
 }

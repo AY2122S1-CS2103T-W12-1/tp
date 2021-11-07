@@ -28,7 +28,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.SportsPa;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.testutil.FacilityBuilder;
 
 public class AllocateMemberCommandTest {

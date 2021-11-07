@@ -31,6 +31,7 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
             indices.add(index);
         }
 
+        assert indices.size() != 0 : "indices list should contain some indices";
         return new MarkAttendanceCommand(indices);
     }
 }

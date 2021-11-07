@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package AliasMap <<Rectangle>>{
+Class AliasMap
+Class Alias
+Class Shortcut
+Class CommandWord
+}
+
+AliasMap -right-> "*" Alias
+Alias -> "            1" Shortcut
+Alias -> "1" CommandWord
+
+Shortcut -[hidden]up- CommandWord
+@enduml

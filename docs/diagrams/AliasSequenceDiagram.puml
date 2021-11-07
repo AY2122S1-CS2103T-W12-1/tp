@@ -21,7 +21,7 @@ activate SportsPaParser
 
 SportsPaParser -> AliasMap : convertAliasIfPresent()
 activate AliasMap
-AliasMap --> SportsPaParser
+AliasMap --> SportsPaParser : "listm"
 deactivate AliasMap
 
 create ListMembersCommand
@@ -37,7 +37,7 @@ deactivate SportsPaParser
 LogicManager -> ListMembersCommand : execute()
 activate ListMembersCommand
 
-ListMembersCommand -> Model : List members
+ListMembersCommand -> Model : updateFilteredMemberList(SHOW_ALL)
 activate Model
 
 Model --> ListMembersCommand

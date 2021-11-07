@@ -16,7 +16,7 @@ import java.util.EnumMap;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.testutil.FacilityBuilder;
 import seedu.address.testutil.MemberBuilder;
 

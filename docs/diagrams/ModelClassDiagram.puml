@@ -24,6 +24,15 @@ Class Tag
 Class TodayAttendance
 Class TotalAttendance
 
+Class UniqueFacilityList
+Class Facility
+Class AllocationMap
+Class FacilityName
+Class Capacity
+Class Location
+Class Time
+
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -40,15 +49,27 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 SportsPa *--> "1" UniqueMemberList
 UniqueMemberList --> "~* all" Member
-Member *--> Name
-Member *--> Phone
-Member *--> Availability
-Member *--> Tag
-Member *--> TodayAttendance
-Member *--> TotalAttendance
+Member *--> "1" Name
+Member *--> "1" Phone
+Member *--> "1" Availability
+Member *--> "*" Tag
+Member *--> "1" TodayAttendance
+Member *--> "1" TotalAttendance
+
+SportsPa *--> "1" UniqueFacilityList
+UniqueFacilityList --> "~*all " Facility
+Facility *--> "1" FacilityName
+Facility *--> "1" Capacity
+Facility *--> "1" Location
+Facility *--> "1" Time
+Facility *--> "1" AllocationMap
+AllocationMap --> "*" Member
 
 Name -[hidden]right-> Phone
 Availability -[hidden]right-> Phone
+FacilityName -[hidden]left- AllocationMap
+UniqueMemberList -[hidden]right- UniqueFacilityList
 
 ModelManager -->"~* filtered" Member
+ModelManager -->" ~* filtered" Facility
 @enduml

@@ -12,16 +12,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SportsPa;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.testutil.MemberBuilder;
 
 class ClearAttendanceCommandTest {
-    private Model model = new ModelManager(new SportsPa(getTypicalSportsPa()), new UserPrefs());
 
     @Test
     public void execute_someMembersPresent_success() {
-        Member member = new MemberBuilder().build();
-        member.setPresent();
+        Model model = new ModelManager(new SportsPa(getTypicalSportsPa()), new UserPrefs());
+        Member member = new MemberBuilder().withTodayAttendance(true).build();
         model.addMember(member);
 
         ClearAttendanceCommand command = new ClearAttendanceCommand();

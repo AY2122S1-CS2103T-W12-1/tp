@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.facility.Facility;
 import seedu.address.model.facility.UniqueFacilityList;
-import seedu.address.model.person.Member;
-import seedu.address.model.person.UniqueMemberList;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.UniqueMemberList;
 
 /**
  * Wraps all data at the SportsPA level
@@ -103,7 +103,7 @@ public class SportsPa implements ReadOnlySportsPa {
         setFacilities(newData.getFacilityList());
     }
 
-    //// person-level operations
+    //// member-level operations
 
     /**
      * Returns true if a member with the same identity as {@code member} exists in SportsPA.
@@ -123,7 +123,7 @@ public class SportsPa implements ReadOnlySportsPa {
 
     /**
      * Adds a member to SportsPA.
-     * The person must not already exist in the address book.
+     * The member must not already exist in the address book.
      */
     public void addMember(Member m) {
         members.add(m);

@@ -26,9 +26,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Member;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.Name;
+import seedu.address.model.member.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.MemberBuilder;
 

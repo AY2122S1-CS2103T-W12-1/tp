@@ -20,11 +20,11 @@ import seedu.address.model.facility.Capacity;
 import seedu.address.model.facility.FacilityName;
 import seedu.address.model.facility.Location;
 import seedu.address.model.facility.Time;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TodayAttendance;
-import seedu.address.model.person.TotalAttendance;
+import seedu.address.model.member.Address;
+import seedu.address.model.member.Name;
+import seedu.address.model.member.Phone;
+import seedu.address.model.member.TodayAttendance;
+import seedu.address.model.member.TotalAttendance;
 import seedu.address.model.tag.Tag;
 
 

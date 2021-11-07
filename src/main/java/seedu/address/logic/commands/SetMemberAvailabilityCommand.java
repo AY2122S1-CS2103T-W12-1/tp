@@ -8,8 +8,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Availability;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Availability;
+import seedu.address.model.member.Member;
 
 /**
  * Sets the availability of an existing member in the member list.
@@ -33,8 +33,8 @@ public class SetMemberAvailabilityCommand extends Command {
     private final Availability availability;
 
     /**
-     * @param indices of the person in the filtered person list to edit the availability
-     * @param availability of the person to be updated to
+     * @param indices of the member in the filtered member list to edit the availability
+     * @param availability of the member to be updated to
      */
     public SetMemberAvailabilityCommand(List<Index> indices, Availability availability) {
         requireAllNonNull(indices, availability);

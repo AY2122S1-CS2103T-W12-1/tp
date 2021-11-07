@@ -31,6 +31,7 @@ public class UnmarkAttendanceCommandParser implements Parser<UnmarkAttendanceCom
             indices.add(index);
         }
 
+        assert indices.size() != 0 : "indices list should contain some indices";
         return new UnmarkAttendanceCommand(indices);
     }
 }

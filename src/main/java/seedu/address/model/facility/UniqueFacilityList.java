@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.facility.exceptions.DuplicateFacilityException;
 import seedu.address.model.facility.exceptions.FacilityNotFoundException;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Represents a list of facilities.
@@ -187,7 +187,7 @@ public class UniqueFacilityList implements Iterable<Facility> {
     }
 
     /**
-     * Removes a person from all allocations from all facilities.
+     * Removes a member from all allocations from all facilities.
      *
      * @param key Person to be removed from allocations.
      */

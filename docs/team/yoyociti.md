@@ -28,7 +28,7 @@ Updating tests was also more complicated as many of the commands already relied 
 * **Team Tasks**:
     * Designed initial mockup for SportsPA v1.1
     * Managed release `v1.2` - `v1.2.1` (2 releases) on GitHub
-      * Morphed existing product Address Book to include basic functionality supporting list of facilities (i.e `findf`, `clearf`, `deletef`, `editf`) (Pull requests [\#85](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/85), [\#89](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/89), [\#97](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/97), [\#111](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/111))
+    * Morphed existing product Address Book to include basic functionality supporting list of facilities (i.e `findf`, `clearf`, `deletef`, `editf`) (Pull requests [\#85](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/85), [\#89](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/89), [\#97](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/97), [\#111](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/111))
 
 * **Enhancements to existing features**:
     * Add test utilities to support Facilities and Facility List for easy and convenient testing (Pull request [\#98](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/98))
@@ -41,6 +41,8 @@ Updating tests was also more complicated as many of the commands already relied 
         * Did cosmetic and tonal tweaks to make User Guide more welcoming and visually aiding (i.e. screenshots, tips) (Pull Requests [\#135](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/135) [\#163](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/163))
     * Developer Guide:
         * Added implementation details of the `alias`, `unalias` and `aliases` feature as well as UML diagrams for illustration (Pull Request [\#124](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/124))
+        * Review overall updates to Developer Guide Design section and update if necessary (Pull Request [\#259](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/259))  
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#112](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/112), [\#137](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/137))
+    * PRs reviewed (with non-trivial review comments): [\#112](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/112), [\#137](https://github.com/AY2122S1-CS2103T-W12-1/tp/pull/137)
+    * Tested and reported bugs for another team during [PED](https://github.com/YoYoCiti/ped/issues)

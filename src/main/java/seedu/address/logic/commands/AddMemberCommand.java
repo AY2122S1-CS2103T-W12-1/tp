@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Adds a member to SportsPA.
@@ -31,7 +31,8 @@ public class AddMemberCommand extends Command {
             + PREFIX_TAG + "y2";
 
     public static final String MESSAGE_SUCCESS = "New member added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MEMBER = "This member already exists in SportsPA";
+    public static final String MESSAGE_DUPLICATE_MEMBER = "A member with the same name or phone number "
+            + "already exists in SportsPA";
 
     private final Member toAdd;
 

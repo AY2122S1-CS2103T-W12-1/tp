@@ -17,6 +17,7 @@ Class StorageManager
 package "SportsPA Storage" #F4F6F6{
 Interface SportsPaStorage <<Interface>>
 Class SportsPaStorage
+Class JsonSportsPaStorage
 Class JsonSerializableSportsPa
 Class JsonAdaptedMember
 Class JsonAdaptedFacility
@@ -36,8 +37,8 @@ Storage -left-|> UserPrefsStorage
 Storage -right-|> SportsPaStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-SportsPaStorage .up.|> SportsPaStorage
-SportsPaStorage ..> JsonSerializableSportsPa
+JsonSportsPaStorage .up.|> SportsPaStorage
+JsonSportsPaStorage ..> JsonSerializableSportsPa
 JsonSerializableSportsPa --> "*" JsonAdaptedMember
 JsonSerializableSportsPa -> "*" JsonAdaptedFacility
 JsonAdaptedFacility --> "*" JsonAdaptedMember

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SetMemberAvailabilityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Availability;
+import seedu.address.model.member.Availability;
 
 public class SetMemberAvailabilityCommandParserTest {
     private SetMemberAvailabilityCommandParser parser = new SetMemberAvailabilityCommandParser();

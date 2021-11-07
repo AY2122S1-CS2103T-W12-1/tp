@@ -21,8 +21,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.exceptions.DuplicateMemberException;
 import seedu.address.testutil.FacilityBuilder;
 import seedu.address.testutil.MemberBuilder;
 
@@ -54,7 +54,7 @@ public class SportsPaTest {
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
         SportsPaStub newData = new SportsPaStub(newMembers);
 
-        assertThrows(DuplicatePersonException.class, () -> sportsPa.resetData(newData));
+        assertThrows(DuplicateMemberException.class, () -> sportsPa.resetData(newData));
     }
 
     @Test

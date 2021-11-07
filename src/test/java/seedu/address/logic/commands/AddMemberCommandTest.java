@@ -27,7 +27,7 @@ import seedu.address.model.alias.AliasMap;
 import seedu.address.model.alias.CommandWord;
 import seedu.address.model.alias.Shortcut;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.sort.SortOrder;
 import seedu.address.testutil.MemberBuilder;
 
@@ -46,14 +46,26 @@ public class AddMemberCommandTest {
         CommandResult commandResult = new AddMemberCommand(validMember).execute(modelStub);
 
         assertEquals(String.format(AddMemberCommand.MESSAGE_SUCCESS, validMember), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMember), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validMember), modelStub.membersAdded);
     }
 
     @Test
-    public void execute_duplicateMember_throwsCommandException() {
+    public void execute_duplicateName_throwsCommandException() {
         Member validMember = new MemberBuilder().build();
+        Member validMemberSameName = new MemberBuilder().withPhone("93852042").build();
         AddMemberCommand addMemberCommand = new AddMemberCommand(validMember);
-        ModelStub modelStub = new ModelStubWithPerson(validMember);
+        ModelStub modelStub = new ModelStubWithPerson(validMemberSameName);
+
+        assertThrows(CommandException.class,
+                AddMemberCommand.MESSAGE_DUPLICATE_MEMBER, () -> addMemberCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicatePhone_throwsCommandException() {
+        Member validMember = new MemberBuilder().build();
+        Member validMemberSamePhone = new MemberBuilder().withName("Sally").build();
+        AddMemberCommand addMemberCommand = new AddMemberCommand(validMember);
+        ModelStub modelStub = new ModelStubWithPerson(validMemberSamePhone);
 
         assertThrows(CommandException.class,
                 AddMemberCommand.MESSAGE_DUPLICATE_MEMBER, () -> addMemberCommand.execute(modelStub));
@@ -79,7 +91,7 @@ public class AddMemberCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different member -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -248,6 +260,11 @@ public class AddMemberCommandTest {
         }
 
         @Override
+        public boolean isValidImport(Member member) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void resetFacilityList() {
             throw new AssertionError("This method should not be called");
         }
@@ -274,7 +291,7 @@ public class AddMemberCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single member.
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Member member;
@@ -292,21 +309,21 @@ public class AddMemberCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the member being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Member> personsAdded = new ArrayList<>();
+        final ArrayList<Member> membersAdded = new ArrayList<>();
 
         @Override
         public boolean hasMember(Member member) {
             requireNonNull(member);
-            return personsAdded.stream().anyMatch(member::isSameMember);
+            return membersAdded.stream().anyMatch(member::isSameMember);
         }
 
         @Override
         public void addMember(Member member) {
             requireNonNull(member);
-            personsAdded.add(member);
+            membersAdded.add(member);
         }
 
         @Override

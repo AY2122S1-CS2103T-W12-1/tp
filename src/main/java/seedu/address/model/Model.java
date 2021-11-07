@@ -12,7 +12,7 @@ import seedu.address.model.alias.AliasMap;
 import seedu.address.model.alias.CommandWord;
 import seedu.address.model.alias.Shortcut;
 import seedu.address.model.facility.Facility;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.sort.SortOrder;
 
 
@@ -136,7 +136,7 @@ public interface Model {
 
     /**
      * Removes the given member from all allocations without deleting them.
-     * The person must exist in the address book.
+     * The member must exist in the address book.
      */
     void removeMemberFromAllocations(Member target);
 
@@ -169,7 +169,7 @@ public interface Model {
     int split(Predicate<Member> predicate, int dayNumber);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given member {@code target} with {@code editedPerson}.
      * {@code target} must exist in SportsPA.
      * The member identity of {@code editedMember} must not be the same as another existing member in SportsPA.
      */
@@ -201,6 +201,15 @@ public interface Model {
     Member getSameMember(Member member);
 
     /**
+     * Checks if the member being imported has the same name as an existing member
+     * and same phone number as another existing member at the same time.
+     * If the such a situation occurs, the member being imported is deemed invalid.
+     *
+     * @param toCheck the member being imported
+     * @return true if only one or no other members with the same name or phone is found, false otherwise.
+     */
+    boolean isValidImport(Member toCheck);
+    /**
      * Sorts the member list in the specified order.
      */
     void sortMemberList(SortOrder sortOrder);
@@ -216,7 +225,7 @@ public interface Model {
     void resetFacilityList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered member list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMemberList(Predicate<Member> predicate);

@@ -16,7 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Member;
+import seedu.address.model.member.Member;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -94,7 +94,7 @@ public class DeleteMemberCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different member -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
