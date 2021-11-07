@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_LIST;
+import static seedu.address.commons.core.Messages.MESSAGE_MEMBER;
 
 import java.util.List;
 
@@ -34,11 +36,12 @@ public class DeleteMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Member> lastShownList = model.getFilteredMemberList();
-
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_EMPTY_LIST, MESSAGE_MEMBER));
+        }
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
-
         Member memberToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteMember(memberToDelete);
         model.updateFilteredFacilityList(Model.PREDICATE_SHOW_ALL_FACILITIES);

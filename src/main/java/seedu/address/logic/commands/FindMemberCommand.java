@@ -36,8 +36,7 @@ public class FindMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Member> lastShownList = model.getFilteredMemberList();
-        if (lastShownList.isEmpty()) {
+        if (model.getInternalMemberList().isEmpty()) {
             throw new CommandException(String.format(MESSAGE_EMPTY_LIST, MESSAGE_MEMBER));
         }
         model.updateFilteredMemberList(predicate);

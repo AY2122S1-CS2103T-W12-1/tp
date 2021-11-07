@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_LIST;
+import static seedu.address.commons.core.Messages.MESSAGE_FACILITY;
 
 import java.util.List;
 
@@ -31,11 +33,12 @@ public class DeleteFacilityCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Facility> lastShownFacilityList = model.getFilteredFacilityList();
-
+        if (lastShownFacilityList.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_EMPTY_LIST, MESSAGE_FACILITY));
+        }
         if (targetIndex.getZeroBased() >= lastShownFacilityList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FACILITY_DISPLAYED_INDEX);
         }
-
         Facility facilityToDelete = lastShownFacilityList.get(targetIndex.getZeroBased());
         model.deleteFacility(facilityToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_FACILITY_SUCCESS, facilityToDelete),

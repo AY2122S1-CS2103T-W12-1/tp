@@ -29,6 +29,9 @@ public class FindFacilityCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.getInternalFacilityList().isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_FACILITY));
+        }
         model.updateFilteredFacilityList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FACILITIES_LISTED_OVERVIEW, model.getFilteredFacilityList().size()),

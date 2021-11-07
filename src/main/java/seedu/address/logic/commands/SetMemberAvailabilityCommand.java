@@ -47,7 +47,9 @@ public class SetMemberAvailabilityCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Member> lastShownList = model.getFilteredMemberList();
         StringBuilder names = new StringBuilder();
-
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_LIST, Messages.MESSAGE_MEMBER));
+        }
         for (Index i : indices) {
             if (i.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDICES);
